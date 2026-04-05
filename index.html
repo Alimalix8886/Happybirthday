@@ -8,7 +8,7 @@
 
 body{
 margin:0;
-background:#000;
+background:black;
 color:white;
 font-family:monospace;
 text-align:center;
@@ -42,27 +42,12 @@ from{ text-shadow:0 0 10px pink;}
 to{ text-shadow:0 0 40px red;}
 }
 
-/* hearts */
-
-.heart{
-position:fixed;
-top:-10px;
-color:red;
-font-size:20px;
-animation:fall 5s linear;
-}
-
-@keyframes fall{
-0%{transform:translateY(-10px);}
-100%{transform:translateY(100vh);}
-}
-
 /* gallery */
 
 .gallery img{
 width:220px;
-border-radius:15px;
 margin:10px;
+border-radius:15px;
 transition:0.4s;
 }
 
@@ -79,6 +64,22 @@ border:none;
 border-radius:10px;
 background:pink;
 cursor:pointer;
+margin:10px;
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+top:-10px;
+color:red;
+font-size:20px;
+animation:fall 5s linear;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px);}
+100%{transform:translateY(100vh);}
 }
 
 /* game */
@@ -86,7 +87,7 @@ cursor:pointer;
 #gameArea{
 height:200px;
 border:2px solid pink;
-margin-top:30px;
+margin-top:20px;
 position:relative;
 overflow:hidden;
 }
@@ -98,7 +99,6 @@ cursor:pointer;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -111,19 +111,21 @@ cursor:pointer;
 
 <h1>Happy Birthday My Love 🎂❤️</h1>
 
-<h2>Our Special Video 🎥</h2>
+<!-- song button -->
 
-<video width="420" controls autoplay loop>
-<source src="video.mp4" type="video/mp4">
-</video>
-
-<button onclick="playSong()">▶ Play Our Song ❤️</button>
+<button onclick="playSong()">🎵 Play Our Song</button>
 
 <audio id="mysong">
-  <source src="https://raw.githubusercontent.com/Alimalix8886/Happybirthday/f02400fee303e96b61474489a240b6190798c0f1/Song.mpeg" type="audio/mpeg">
+<source src="https://raw.githubusercontent.com/Alimalix8886/Happybirthday/f02400fee303e96b61474489a240b6190798c0f1/Song.mpeg" type="audio/mpeg">
 </audio>
 
-<script>
+<br><br>
+
+<h2>Our Special Video 🎥</h2>
+
+<video width="420" controls>
+<source src="video.mp4" type="video/mp4">
+</video>
 
 <h2>Our Memories 📸</h2>
 
@@ -137,6 +139,7 @@ cursor:pointer;
 <h2>Catch My Heart Game ❤️</h2>
 
 <div id="gameArea"></div>
+
 <p>Score: <span id="score">0</span></p>
 
 <button onclick="surprise()">Open Final Surprise 🎁</button>
@@ -147,14 +150,13 @@ cursor:pointer;
 
 <script>
 
-/* terminal loading */
+/* terminal intro */
 
 let lines=[
 "Loading love.exe ...",
 "Connecting to heart ❤️ ...",
 "Checking memories ...",
-"Loading romantic module ...",
-"Preparing surprise ...",
+"Preparing romantic surprise ...",
 "Surprise ready ❤️"
 ];
 
@@ -175,6 +177,12 @@ document.getElementById("main").style.display="block";
 }
 
 typeLine();
+
+/* song button */
+
+function playSong(){
+document.getElementById("mysong").play();
+}
 
 /* falling hearts */
 
@@ -212,39 +220,17 @@ heart.remove();
 document.getElementById("gameArea").appendChild(heart);
 
 setTimeout(()=>{heart.remove()},2000);
+
 }
 
 setInterval(spawnHeart,800);
 
-/* surprise */
+/* final surprise */
 
 function surprise(){
 
 document.getElementById("msg").innerHTML=
-"💖 You are the best thing that ever happened to me.<br><br>Happy Birthday My Queen 👑❤️";
-
-fireworks();
-
-}
-
-/* fireworks */
-
-function fireworks(){
-
-for(let i=0;i<30;i++){
-
-let star=document.createElement("div");
-star.innerHTML="✨";
-star.style.position="fixed";
-star.style.left=Math.random()*100+"vw";
-star.style.top=Math.random()*100+"vh";
-star.style.fontSize="30px";
-
-document.body.appendChild(star);
-
-setTimeout(()=>{star.remove()},2000);
-
-}
+"💖 You are the most beautiful part of my life.<br><br>Happy Birthday My Queen 👑❤️";
 
 }
 
