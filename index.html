@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise ❤️</title>
+
+<style>
+
+body{
+margin:0;
+background:#000;
+color:white;
+font-family:monospace;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* terminal */
+
+#terminal{
+position:absolute;
+top:40%;
+width:100%;
+font-size:28px;
+}
+
+/* main */
+
+#main{
+display:none;
+padding:20px;
+}
+
+h1{
+font-size:50px;
+color:pink;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px pink;}
+to{ text-shadow:0 0 40px red;}
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+top:-10px;
+color:red;
+font-size:20px;
+animation:fall 5s linear;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px);}
+100%{transform:translateY(100vh);}
+}
+
+/* gallery */
+
+.gallery img{
+width:220px;
+border-radius:15px;
+margin:10px;
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.2);
+}
+
+/* button */
+
+button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:10px;
+background:pink;
+cursor:pointer;
+}
+
+/* game */
+
+#gameArea{
+height:200px;
+border:2px solid pink;
+margin-top:30px;
+position:relative;
+overflow:hidden;
+}
+
+.gameHeart{
+position:absolute;
+font-size:30px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="terminal">
+<div id="text"></div>
+</div>
+
+<div id="main">
+
+<h1>Happy Birthday My Love 🎂❤️</h1>
+
+<h2>Our Special Video 🎥</h2>
+
+<video width="420" controls autoplay loop>
+<source src="video.mp4" type="video/mp4">
+</video>
+
+<audio autoplay loop>
+<source src="song.mp3">
+</audio>
+
+<h2>Our Memories 📸</h2>
+
+<div class="gallery">
+<img src="pic1.jpg">
+<img src="pic2.jpg">
+<img src="pic3.jpg">
+<img src="pic4.jpg">
+</div>
+
+<h2>Catch My Heart Game ❤️</h2>
+
+<div id="gameArea"></div>
+<p>Score: <span id="score">0</span></p>
+
+<button onclick="surprise()">Open Final Surprise 🎁</button>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+/* terminal loading */
+
+let lines=[
+"Loading love.exe ...",
+"Connecting to heart ❤️ ...",
+"Checking memories ...",
+"Loading romantic module ...",
+"Preparing surprise ...",
+"Surprise ready ❤️"
+];
+
+let i=0;
+
+function typeLine(){
+if(i<lines.length){
+document.getElementById("text").innerHTML+=lines[i]+"<br>";
+i++;
+setTimeout(typeLine,900);
+}
+else{
+setTimeout(()=>{
+document.getElementById("terminal").style.display="none";
+document.getElementById("main").style.display="block";
+},1500);
+}
+}
+
+typeLine();
+
+/* falling hearts */
+
+function hearts(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},5000);
+}
+
+setInterval(hearts,300);
+
+/* mini game */
+
+let score=0;
+
+function spawnHeart(){
+
+let heart=document.createElement("div");
+heart.className="gameHeart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*90+"%";
+heart.style.top=Math.random()*80+"%";
+
+heart.onclick=function(){
+score++;
+document.getElementById("score").innerText=score;
+heart.remove();
+}
+
+document.getElementById("gameArea").appendChild(heart);
+
+setTimeout(()=>{heart.remove()},2000);
+}
+
+setInterval(spawnHeart,800);
+
+/* surprise */
+
+function surprise(){
+
+document.getElementById("msg").innerHTML=
+"💖 You are the best thing that ever happened to me.<br><br>Happy Birthday My Queen 👑❤️";
+
+fireworks();
+
+}
+
+/* fireworks */
+
+function fireworks(){
+
+for(let i=0;i<30;i++){
+
+let star=document.createElement("div");
+star.innerHTML="✨";
+star.style.position="fixed";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+star.style.fontSize="30px";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{star.remove()},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
