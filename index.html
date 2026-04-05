@@ -5,7 +5,6 @@
 <title>Birthday Surprise ❤️</title>
 
 <style>
-
 body{
 margin:0;
 background:black;
@@ -16,7 +15,6 @@ overflow-x:hidden;
 }
 
 /* terminal */
-
 #terminal{
 position:absolute;
 top:40%;
@@ -25,7 +23,6 @@ font-size:28px;
 }
 
 /* main */
-
 #main{
 display:none;
 padding:20px;
@@ -43,7 +40,6 @@ to{ text-shadow:0 0 40px red;}
 }
 
 /* gallery */
-
 .gallery img{
 width:220px;
 margin:10px;
@@ -56,19 +52,17 @@ transform:scale(1.2);
 }
 
 /* button */
-
 button{
-padding:15px 30px;
-font-size:20px;
+padding:10px 20px;
+font-size:16px;
 border:none;
-border-radius:10px;
+border-radius:8px;
 background:pink;
 cursor:pointer;
 margin:10px;
 }
 
 /* hearts */
-
 .heart{
 position:fixed;
 top:-10px;
@@ -82,8 +76,7 @@ animation:fall 5s linear;
 100%{transform:translateY(100vh);}
 }
 
-/* game */
-
+/* mini game */
 #gameArea{
 height:200px;
 border:2px solid pink;
@@ -111,48 +104,40 @@ cursor:pointer;
 
 <h1>Happy Birthday My Love 🎂❤️</h1>
 
-<!-- song button -->
-
+<!-- Play Song Button -->
 <button onclick="playSong()">🎵 Play Our Song</button>
-
 <audio id="mysong">
-<source src="https://raw.githubusercontent.com/Alimalix8886/Happybirthday/f02400fee303e96b61474489a240b6190798c0f1/Song.mpeg" type="audio/mpeg">
+  <source src="https://raw.githubusercontent.com/Alimalix8886/Happybirthday/f02400fee303e96b61474489a240b6190798c0f1/Song.mpeg" type="audio/mpeg">
 </audio>
 
-<br><br>
+<br>
 
-<h2>Our Special Video 🎥</h2>
-
-<video width="450" controls autoplay loop style="border-radius:15px">
-  <source src="https://cdn.jsdelivr.net/gh/Alimalix8886/Happybirthday@5adf74371a8d40b808bd8fdd079bfd8cfd19a043/video.mp4" type="video/mp4">
+<!-- Play Video Button -->
+<button onclick="playVideo()">▶ Play Video</button>
+<video id="myVideo" width="450" style="border-radius:15px;" controls>
+  <source src="https://raw.githubusercontent.com/Alimalix8886/Happybirthday/5adf74371a8d40b808bd8fdd079bfd8cfd19a043/video.mp4" type="video/mp4">
   Your browser does not support video.
 </video>
 
 <h2>Our Memories 📸</h2>
-
 <div class="gallery">
-<img src="pic1.jpg">
-<img src="pic2.jpg">
-<img src="pic3.jpg">
-<img src="pic4.jpg">
+  <img src="pic1.jpg">
+  <img src="pic2.jpg">
+  <img src="pic3.jpg">
+  <img src="pic4.jpg">
 </div>
 
 <h2>Catch My Heart Game ❤️</h2>
-
 <div id="gameArea"></div>
-
 <p>Score: <span id="score">0</span></p>
 
 <button onclick="surprise()">Open Final Surprise 🎁</button>
-
 <p id="msg"></p>
 
 </div>
 
 <script>
-
-/* terminal intro */
-
+/* Terminal Loading */
 let lines=[
 "Loading love.exe ...",
 "Connecting to heart ❤️ ...",
@@ -160,81 +145,65 @@ let lines=[
 "Preparing romantic surprise ...",
 "Surprise ready ❤️"
 ];
-
 let i=0;
-
 function typeLine(){
-if(i<lines.length){
-document.getElementById("text").innerHTML+=lines[i]+"<br>";
-i++;
-setTimeout(typeLine,900);
+  if(i<lines.length){
+    document.getElementById("text").innerHTML+=lines[i]+"<br>";
+    i++;
+    setTimeout(typeLine,900);
+  }else{
+    setTimeout(()=>{
+      document.getElementById("terminal").style.display="none";
+      document.getElementById("main").style.display="block";
+    },1500);
+  }
 }
-else{
-setTimeout(()=>{
-document.getElementById("terminal").style.display="none";
-document.getElementById("main").style.display="block";
-},1500);
-}
-}
-
 typeLine();
 
-/* song button */
-
+/* Play Song */
 function playSong(){
-document.getElementById("mysong").play();
+  document.getElementById("mysong").play();
 }
 
-/* falling hearts */
+/* Play Video */
+function playVideo(){
+  document.getElementById("myVideo").play();
+}
 
+/* Falling Hearts */
 function hearts(){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-document.body.appendChild(heart);
-
-setTimeout(()=>{heart.remove()},5000);
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  document.body.appendChild(heart);
+  setTimeout(()=>{heart.remove()},5000);
 }
-
 setInterval(hearts,300);
 
-/* mini game */
-
+/* Mini Heart Game */
 let score=0;
-
 function spawnHeart(){
-
-let heart=document.createElement("div");
-heart.className="gameHeart";
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*90+"%";
-heart.style.top=Math.random()*80+"%";
-
-heart.onclick=function(){
-score++;
-document.getElementById("score").innerText=score;
-heart.remove();
+  let heart=document.createElement("div");
+  heart.className="gameHeart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*90+"%";
+  heart.style.top=Math.random()*80+"%";
+  heart.onclick=function(){
+    score++;
+    document.getElementById("score").innerText=score;
+    heart.remove();
+  }
+  document.getElementById("gameArea").appendChild(heart);
+  setTimeout(()=>{heart.remove()},2000);
 }
-
-document.getElementById("gameArea").appendChild(heart);
-
-setTimeout(()=>{heart.remove()},2000);
-
-}
-
 setInterval(spawnHeart,800);
 
-/* final surprise */
-
+/* Final Surprise */
 function surprise(){
-
-document.getElementById("msg").innerHTML=
-"💖 You are the most beautiful part of my life.<br><br>Happy Birthday My Queen 👑❤️";
-
+  document.getElementById("msg").innerHTML=
+  "💖 You are the most beautiful part of my life.<br><br>Happy Birthday My Queen 👑❤️";
 }
-
 </script>
 
 </body>
