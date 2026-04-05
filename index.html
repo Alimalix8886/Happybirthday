@@ -91,6 +91,26 @@ font-size:30px;
 cursor:pointer;
 }
 
+/* poetry section */
+#poetryContainer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:30px 0;
+}
+
+#poetryText{
+width:60%;
+font-size:22px;
+line-height:1.5;
+color:#ffb6c1;
+}
+
+.sidePic{
+width:18%;
+border-radius:15px;
+}
+
 </style>
 </head>
 
@@ -110,14 +130,18 @@ cursor:pointer;
   <source src="https://raw.githubusercontent.com/Alimalix8886/Happybirthday/f02400fee303e96b61474489a240b6190798c0f1/Song.mpeg" type="audio/mpeg">
 </audio>
 
-<br>
-
-<!-- Play Video Button -->
-<button onclick="playVideo()">▶ Play Video</button>
-<video id="myVideo" width="450" style="border-radius:15px;" controls>
-  <source src="https://raw.githubusercontent.com/Alimalix8886/Happybirthday/5adf74371a8d40b808bd8fdd079bfd8cfd19a043/video.mp4" type="video/mp4">
-  Your browser does not support video.
-</video>
+<!-- Poetry Section -->
+<div id="poetryContainer">
+  <img src="leftPic.jpg" class="sidePic">
+  <div id="poetryText">
+    💖 Roses are red,<br>
+    Violets are blue,<br>
+    Today is special,<br>
+    Because of you! 🌸<br><br>
+    Happy Birthday, My Queen 👑❤️
+  </div>
+  <img src="rightPic.jpg" class="sidePic">
+</div>
 
 <h2>Our Memories 📸</h2>
 <div class="gallery">
@@ -163,11 +187,6 @@ typeLine();
 /* Play Song */
 function playSong(){
   document.getElementById("mysong").play();
-}
-
-/* Play Video */
-function playVideo(){
-  document.getElementById("myVideo").play();
 }
 
 /* Falling Hearts */
